@@ -1,73 +1,84 @@
-# UI Design System — Plataforma PP
+# 🎨 Sistema de Diseño — Plataforma PP
 
-## Color Palette
+## Paleta de Colores
 
-| Token | Tailwind Class | Uso |
+| Token | Clase Tailwind | Uso |
 |-------|---------------|-----|
-| Primary | `indigo-900` | Links, botones, estados activos, branding |
-| Secondary accent | `purple-600` | Elementos interactivos secundarios |
-| Tertiary accent | `fuchsia-700` | Destacados terciarios, badges |
-| Surface default | `gray-50` | Fondo de página |
-| Surface card | `white` | Tarjetas, paneles, modales |
-| Border | `gray-200` | Divisores, bordes de tarjeta, bordes de input |
-| Text primary | `gray-900` | Títulos, texto corporal |
-| Text secondary | `gray-500` | Placeholders, captions, texto secundario |
-| Alert/Error | `red-600` | Mensajes de error, acciones destructivas |
-| Success | `green-600` | Mensajes de éxito, confirmaciones |
+| **Primario** | `indigo-900` | Logo, Títulos, Tabs activos, Botones principales |
+| **Acento** | `blue-900` / `blue-800` | Iconos, Hover states, Bordes decorativos, Avatares |
+| **Fondo principal** | `bg-gray-50` | Fondo de todas las páginas |
+| **Tarjetas** | `bg-white` | Contenedores, tarjetas, paneles |
+| **Sombra tarjetas** | `shadow-sm` | Elevación sutil para tarjetas |
+| **Bordes tarjetas** | `rounded-lg` | Esquinas redondeadas |
+| **Texto principal** | `text-gray-900` | Contenido principal, encabezados |
+| **Texto secundario** | `text-gray-500` | Subtítulos, placeholders, descripciones |
+| **Bordes** | `border-gray-200` | Divisores, inputs, separadores |
+| **Alertas / Errores** | `red-600` | Notificaciones de error, alertas |
+| **Éxito** | `emerald-600` | Estados positivos, completados |
+| **Advertencia** | `amber-500` | Estados de atención, pendientes |
 
-## Typography
+## Tipografía
 
-| Elemento | Clase | Weight |
-|----------|-------|--------|
-| Page title (h1) | `text-3xl` o mayor | `font-bold` |
-| Section title (h2) | `text-2xl` | `font-semibold` |
-| Card title (h3) | `text-xl` | `font-semibold` |
-| Body text | `text-base` | `font-normal` |
-| Small/caption | `text-sm` | `font-normal` |
-| Button text | `text-sm` | `font-medium` |
+- **Fuente principal**: Geist Sans (variable, configurada en `app/layout.tsx`)
+- **Fuente mono**: Geist Mono (para datos, códigos)
+- **Jerarquía**:
+  - `text-3xl font-bold text-indigo-900` → Títulos de página (h1)
+  - `text-xl font-semibold text-gray-900` → Subtítulos (h2)
+  - `text-base text-gray-500` → Texto descriptivo
 
-**Fuente base**: Geist Sans (configurada via `@theme inline` en `globals.css`).
+## Convenciones de Componentes
 
-## Component Conventions
-
-| Componente | Clases |
-|------------|--------|
-| Card | `bg-white shadow-sm rounded-lg border border-gray-200` |
-| Button (primary) | `bg-indigo-900 text-white rounded-md hover:bg-indigo-800` |
-| Button (secondary) | `border border-gray-200 text-gray-900 rounded-md hover:bg-gray-50` |
-| Tab (active) | `border-b-4 border-indigo-900 text-indigo-900` |
-| Tab (inactive) | `border-b-4 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300` |
-| Input | `border border-gray-200 rounded-md focus:ring-2 focus:ring-indigo-900` |
-| Alert/Error | `text-red-600` con opcional `bg-red-50` |
-
-## Layout Structure
-
-```
-Navbar (bg-white, border-b, max-w-7xl)
-├── Logo (izquierda, text-indigo-900)
-├── NavLinks (centro, tabs horizontales)
-│   └── overflow-x-auto en mobile
-└── UserMenu (derecha, select dropdown)
-
-<main> (flex-1, max-w-7xl, mx-auto, px-4/6/8, py-8)
-└── {children} (contenido de cada página)
+### Tarjetas (Cards)
+```html
+<div class="bg-white shadow-sm rounded-lg p-6">...</div>
 ```
 
-### Responsive Breakpoints
+### Tarjetas de Estadísticas (StatCard)
+```html
+<div class="bg-white shadow-sm rounded-lg border-l-4 border-l-blue-900 p-5">
+  <!-- icono + valor + etiqueta -->
+</div>
+```
 
-- **Mobile** (< `sm`): `px-4`, NavLinks con scroll horizontal (`overflow-x-auto`, `whitespace-nowrap`)
-- **Tablet** (`sm`-`lg`): `px-6`
-- **Desktop** (`>= lg`): `px-8`
+### Botones Primarios
+```html
+<button class="bg-indigo-900 text-white rounded-md px-6 py-3 hover:bg-indigo-800">
+```
 
-## Role Navigation Map
+### Botones Secundarios
+```html
+<button class="border border-gray-200 text-gray-900 rounded-md px-6 py-3 hover:bg-gray-50">
+```
 
-| Rol | Tabs |
-|-----|------|
-| `public` | Inicio, Programas, FAQ |
-| `alumno` | Dashboard, Perfil, Plazas, Reportes, Descargas |
-| `institucion` | Perfil, Vacantes, Postulantes, Reportes |
-| `admin` | Usuarios, Documentos, Reportes, Configuración |
+### Tabs de Navegación
+- Activo: `border-b-4 border-indigo-900 text-indigo-900`
+- Inactivo: `border-b-4 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300`
 
-## Dark Mode
+## Estructura del Layout
 
-Desactivado. La aplicación es **light-only**. No usar clases `dark:` ni `@media (prefers-color-scheme: dark)`.
+```
+┌──────────────────────────────────────────────┐
+│  Navbar (blanco, border-b, h-16)             │
+│  ┌──────┐  ┌──────────────────┐  ┌────────┐ │
+│  │ Logo │  │  NavLinks (tabs) │  │ User   │ │
+│  └──────┘  └──────────────────┘  └────────┘ │
+├──────────────────────────────────────────────┤
+│  main (bg-gray-50, flex-1)                   │
+│  ┌────────────────────────────────────────┐  │
+│  │  max-w-7xl mx-auto px-4 sm:px-6       │  │
+│  │  lg:px-8 py-8                         │  │
+│  │  ┌──────────────────────────────┐     │  │
+│  │  │  PageHeader                 │     │  │
+│  │  ├──────────────────────────────┤     │  │
+│  │  │  Contenido (cards, tablas)  │     │  │
+│  │  └──────────────────────────────┘     │  │
+│  └────────────────────────────────────────┘  │
+└──────────────────────────────────────────────┘
+```
+
+## Tema Claro Exclusivo
+
+No se soporta modo oscuro. El tema es institucional claro:
+- Fondo: `bg-gray-50`
+- Texto: `text-gray-900` / `text-gray-500`
+- Las variables CSS `--background` y `--foreground` están configuradas para tema claro fijo.

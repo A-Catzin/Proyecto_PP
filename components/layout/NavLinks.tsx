@@ -20,13 +20,8 @@ const NAV_ITEMS: Record<Role, NavItem[]> = {
     { label: "Perfil", href: "/perfil" },
     { label: "Plazas", href: "/plazas" },
     { label: "Reportes", href: "/reportes" },
+    { label: "Documentos", href: "/subir-documentos" },
     { label: "Descargas", href: "/descargas" },
-  ],
-  institucion: [
-    { label: "Perfil", href: "/perfil-institucion" },
-    { label: "Vacantes", href: "/vacantes" },
-    { label: "Postulantes", href: "/postulantes" },
-    { label: "Reportes", href: "/reportes-institucion" },
   ],
   admin: [
     { label: "Usuarios", href: "/usuarios" },

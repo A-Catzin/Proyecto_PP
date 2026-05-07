@@ -7,12 +7,11 @@ interface UserMenuProps {
   onRoleChange: (role: Role) => void;
 }
 
-const ROLES: Role[] = ['public', 'alumno', 'institucion', 'admin'];
+const ROLES: Role[] = ['public', 'alumno', 'admin'];
 
 const ROLE_LABELS: Record<Role, string> = {
   public: 'Público',
   alumno: 'Alumno',
-  institucion: 'Institución',
   admin: 'Admin',
 };
 
